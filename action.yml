@@ -14,7 +14,7 @@ inputs:
   DATABASE_USER_NAME:
     description: PostgreSQL database username.
     required: true
-  DATABASE_PASS:
+  DATABASE_PASSWORD:
     description: PostgreSQL database password.
     required: true
   DATABASE_HOST:
