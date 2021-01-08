@@ -1,0 +1,32 @@
+name: "Generate PostgreSQL Schema Documentation"
+description: "Generates database schema documentation for a PostgreSQL Database"
+author: "Kumar M Shrivatsav <kumar.sm@surya-soft.com>"
+inputs:
+  PATH_TO_ER_DIAGRAM:
+    description: Path to store the ER Diagram image relative the project root directory.
+    required: true
+  PATH_TO_DB_SCHEMA_FILE:
+    description: Path to hand written db schema documentation file relative the project root directory.
+    required: true
+  PATH_TO_GENERATED_DB_SCHEMA_FILE:
+    description: Path where the generated db schema documentation file has to be written to relative the project root directory.
+    required: true
+  DATABASE_USER_NAME:
+    description: PostgreSQL database username.
+    required: true
+  DATABASE_PASS:
+    description: PostgreSQL database password.
+    required: true
+  DATABASE_HOST:
+    description: PostgreSQL database hostname.
+    required: true
+  DATABASE_PORT:
+    description: PostgreSQL database port.
+    required: true
+  DATABASE_NAME:
+    description: PostgreSQL database name.
+    required: true
+
+runs:
+  using: "docker"
+  image: "Dockerfile"
