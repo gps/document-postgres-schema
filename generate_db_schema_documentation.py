@@ -45,8 +45,8 @@ def list_of_md_files(directory, extension):
     return (f for f in listdir(directory) if f.endswith(extension) and not f.startswith("README"))
 
 def generate_table_of_contents():
-    toc = md_toc.build_toc(PATH_TO_GENERATED_DB_SCHEMA_FILE, keep_header_levels=6, parser="github")
-    md_toc.write_string_on_file_between_markers(PATH_TO_GENERATED_DB_SCHEMA_FILE, toc, "<!-- TOC -->")
+    toc = md_toc.build_toc(PATH_TO_GITHUB_WORKSPACE + PATH_TO_GENERATED_DB_SCHEMA_FILE, keep_header_levels=6, parser="github")
+    md_toc.write_string_on_file_between_markers(PATH_TO_GITHUB_WORKSPACE + PATH_TO_GENERATED_DB_SCHEMA_FILE, toc, "<!-- TOC -->")
 
 def list_tables():
     list_of_all_tables = []
