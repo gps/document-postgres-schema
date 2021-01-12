@@ -88,7 +88,7 @@ def main():
         with open(PATH_TO_GITHUB_WORKSPACE + PATH_TO_DB_SCHEMA_FILE,"r") as db_schema_file:
             db_schema_contents = db_schema_file.readlines()
         with open (PATH_TO_GITHUB_WORKSPACE + PATH_TO_GENERATED_DB_SCHEMA_FILE,"w") as generated_db_schema:
-            generated_db_schema.write("This file is auto-generated. Please do not modify this file.\n")
+            generated_db_schema.write("This file is auto-generated. Please do not modify this file.\n<!-- TOC -->\n")
             try:
                 for line in db_schema_contents:
                     if(line.startswith("<<<-") and line.endswith("->>>\n")):
@@ -101,7 +101,7 @@ def main():
                     else:
                         generated_db_schema.writelines(line)
                 if(len(undocumented_tables) != 0):
-                    generated_db_schema.write("\n## Undocumented Tables\nThe following tables have not been documented. Please document them if needed.\n<!-- TOC -->\n")
+                    generated_db_schema.write("\n## Undocumented Tables\nThe following tables have not been documented. Please document them if needed.\n")
                     for table in undocumented_tables:
                         generated_db_schema.writelines("- ")
                         generated_db_schema.writelines(table)
