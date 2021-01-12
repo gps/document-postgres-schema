@@ -10,6 +10,7 @@ ENV CI=true
 
 RUN chmod +x /entrypoint.sh && \
     chmod +x /generate_db_schema_documentation.py && \
-    npm install
+    npm install && \
+    pip3 install 'md-toc==7.0.1'
 
 ENTRYPOINT ["/entrypoint.sh"]
