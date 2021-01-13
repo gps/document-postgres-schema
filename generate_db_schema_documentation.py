@@ -46,8 +46,12 @@ def list_of_md_files(directory, extension):
 
 def generate_table_of_contents():
     toc = md_toc.build_toc(PATH_TO_GITHUB_WORKSPACE + PATH_TO_GENERATED_DB_SCHEMA_FILE, keep_header_levels=6, parser="github")
-    md_toc.write_string_on_file_between_markers(PATH_TO_GITHUB_WORKSPACE + PATH_TO_GENERATED_DB_SCHEMA_FILE, toc, "<!-- TOC -->")
-
+    with open(PATH_TO_GITHUB_WORKSPACE + PATH_TO_GENERATED_DB_SCHEMA_FILE,"r") as fin:
+        filedata = fin.read()
+    filedata = filedata.replace("<!-- TOC -->", toc)
+    with open(PATH_TO_GITHUB_WORKSPACE + PATH_TO_GENERATED_DB_SCHEMA_FILE,"w") as fout:
+        fout.write(filedata)
+    
 def list_tables():
     list_of_all_tables = []
     table_files = list_of_md_files(PATH_TO_TEMP_FOLDER,FILE_EXTENSION)
