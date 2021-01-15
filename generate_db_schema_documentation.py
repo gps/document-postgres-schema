@@ -105,6 +105,7 @@ def main():
                     else:
                         generated_db_schema.writelines(line)
                 if(len(undocumented_tables) != 0):
+                    undocumented_tables.sort()
                     generated_db_schema.write("\n## Undocumented Tables\nThe following tables have not been documented. Please document them if needed.\n")
                     for table in undocumented_tables:
                         generated_db_schema.writelines("- ")
