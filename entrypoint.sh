@@ -12,7 +12,4 @@ echo "Script executed"
 echo "Format generated markdown file"
 /node_modules/prettier/bin-prettier.js --write "${INPUT_PATH_TO_GENERATED_DB_SCHEMA_FILE}"
 
-echo "Copying generated schema image from /tmp/tbls/doc/schema/ to path specified"
-cp "/tmp/tbls/doc/schema/schema.png" "/github/workspace/${INPUT_PATH_TO_ER_DIAGRAM}"
-
 echo "Schema Document successfully generated"
