@@ -72,7 +72,7 @@ def get_table(filename):
         table_file_read = table_file.read()
         table_file_read_split_columns = table_file_read.split("## Columns")
         table_file_read_tables = table_file_read_split_columns[1]
-        tables = table_file_read_tables.split("## Relations\n")
+        tables = table_file_read_tables.split("---\n")
         table = tables[0]
         return filter_table(table)
 
