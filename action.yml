@@ -2,9 +2,6 @@ name: "Generate PostgreSQL Schema Documentation"
 description: "Generates database schema documentation for a PostgreSQL Database"
 author: "Kumar M Shrivatsav <kumar.sm@surya-soft.com>"
 inputs:
-  PATH_TO_ER_DIAGRAM:
-    description: Path to store the ER Diagram image relative the project root directory.
-    required: true
   PATH_TO_DB_SCHEMA_FILE:
     description: Path to hand written db schema documentation file relative the project root directory.
     required: true

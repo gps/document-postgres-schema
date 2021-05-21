@@ -6,12 +6,12 @@ from os import listdir
 import os
 import re
 import subprocess
+import sys
 
 PATH_TO_TEMP_FOLDER = "/tmp/tbls/doc/schema/"
 PATH_TO_GITHUB_WORKSPACE = "/github/workspace/"
 DATABASE_TABLE_PREFIX = "public."
 FILE_EXTENSION = ".md"
-INPUT_PATH_TO_ER_DIAGRAM = os.environ["INPUT_PATH_TO_ER_DIAGRAM"]
 PATH_TO_DB_SCHEMA_FILE = os.environ["INPUT_PATH_TO_DB_SCHEMA_FILE"]
 PATH_TO_GENERATED_DB_SCHEMA_FILE = os.environ["INPUT_PATH_TO_GENERATED_DB_SCHEMA_FILE"]
 INPUT_DATABASE_HOST = os.environ["INPUT_DATABASE_HOST"]
@@ -19,12 +19,10 @@ INPUT_DATABASE_NAME = os.environ["INPUT_DATABASE_NAME"]
 INPUT_DATABASE_PASSWORD = os.environ["INPUT_DATABASE_PASSWORD"]
 INPUT_DATABASE_PORT = os.environ["INPUT_DATABASE_PORT"]
 INPUT_DATABASE_USER_NAME = os.environ["INPUT_DATABASE_USER_NAME"]
-ER_DIAGRAM_KEY = "ERDIAGRAM"
 TBLS_YML = f"""
 dsn: postgres://{INPUT_DATABASE_USER_NAME}:{INPUT_DATABASE_PASSWORD}@{INPUT_DATABASE_HOST}:{INPUT_DATABASE_PORT}/{INPUT_DATABASE_NAME}?sslmode=disable
 er:
-  format: png
-  distance: 2
+  skip: true
 exclude:
   - public.flyway_schema_history
 
@@ -74,15 +72,12 @@ def get_table(filename):
         table_file_read = table_file.read()
         table_file_read_split_columns = table_file_read.split("## Columns")
         table_file_read_tables = table_file_read_split_columns[1]
-        tables = table_file_read_tables.split("## Relations\n")
+        tables = table_file_read_tables.split("---\n")
         table = tables[0]
         return filter_table(table)
 
 def get_replace_line(key):
-    if(key == ER_DIAGRAM_KEY):
-        return f"![](/{INPUT_PATH_TO_ER_DIAGRAM})"
-    else:
-        return get_table(key)
+    return get_table(key)
 
 def main():
     try: 
@@ -113,7 +108,8 @@ def main():
                         generated_db_schema.writelines("\n")
 
             except Exception as e:
-                print(e)
+                print("Database schema generation failed due to error:",e)
+                sys.exit(1)
         generate_table_of_contents()
     finally:
         delete_tbls_yml()

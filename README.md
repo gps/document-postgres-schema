@@ -11,11 +11,6 @@ Create a file in your repo in which you hand-write documentation for your schema
 For example, `docs/db-schema.md`:
 
 ```
-# Database Schema
-
-The Entity Relationship representation:
-
-<<<-ERDIAGRAM->>>
 
 # Database tables
 
@@ -25,18 +20,10 @@ The `Users` table stores user records.
 <<<-Users->>>
 ```
 
-This action will replace the placeholder `<<<-ERDIAGRAM->>>` with an image to a generated ER diagram.
-
-It will also replace all occurrences of `<<<-Users->>>` with a markdown table that describes the structure of the database table identified by what is in between `<<<-` and `->>>`. In the above example, the generated documentation would look like this:
+This action will replace all occurrences of `<<<-Users->>>` with a markdown table that describes the structure of the database table identified by what is in between `<<<-` and `->>>`. In the above example, the generated documentation would look like this:
 
 
 ```markdown
-# Database Schema
-
-The Entity Relationship representation:
-
-![](/docs/images/schema.png)
-
 # Database tables
 
 ## Users table
@@ -78,12 +65,6 @@ The following tables have not been documented. Please document them if needed.
 ```
 
 ## Inputs
-
-### PATH_TO_ER_DIAGRAM
-
-Path to store the ER Diagram image relative the project root directory.
-
-**Required**
 
 ### PATH_TO_DB_SCHEMA_FILE
 
@@ -168,7 +149,6 @@ jobs:
       - name: Generate database schema
         uses:  gps/document-postgres-schema@master
         with:
-          PATH_TO_ER_DIAGRAM: "docs/images/schema.png"
           PATH_TO_DB_SCHEMA_FILE: "docs/db-schema.md"
           PATH_TO_GENERATED_DB_SCHEMA_FILE: "docs/generated-db-schema.md"
           DATABASE_USER_NAME: "foobar"
