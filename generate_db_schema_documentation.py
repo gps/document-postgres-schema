@@ -108,7 +108,7 @@ def main():
                         generated_db_schema.writelines("\n")
 
             except Exception as e:
-                print(e)
+                print("Database schema generation failed due to error:",e)
                 sys.exit(1)
         generate_table_of_contents()
     finally:
