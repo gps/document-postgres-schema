@@ -9,8 +9,11 @@ COPY package-lock.json /package-lock.json
 # NPM needs this
 ENV CI=true
 
-RUN chmod +x /entrypoint.sh && \
-    chmod +x /generate_db_schema_documentation.py && \
+COPY ./ /usr/app
+WORKDIR /usr/app
+
+RUN chmod +x entrypoint.sh && \
+    chmod +x generate_db_schema_documentation.py && \
     pip3 install -r requirements.txt && \
     npm install
 
