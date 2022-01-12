@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs
+FROM nikolaik/python-nodejs:python3.10-nodejs14
 
 COPY entrypoint.sh /entrypoint.sh
 COPY requirements.txt /requirements.txt
