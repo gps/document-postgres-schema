@@ -1,4 +1,4 @@
-FROM nikolaik/python-nodejs:python3.10-nodejs14
+FROM nikolaik/python-nodejs:python3.12-nodejs20
 
 COPY entrypoint.sh /entrypoint.sh
 COPY requirements.txt /requirements.txt
@@ -10,8 +10,9 @@ COPY package-lock.json /package-lock.json
 ENV CI=true
 
 RUN chmod +x /entrypoint.sh && \
-    chmod +x /generate_db_schema_documentation.py && \
-    pip3 install -r requirements.txt && \
-    npm install
+  chmod +x /generate_db_schema_documentation.py && \
+  pip3 install -r --no-cache-dir requirements.txt && \
+  npm install
 
 ENTRYPOINT ["/entrypoint.sh"]
+
