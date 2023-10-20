@@ -11,7 +11,7 @@ ENV CI=true
 
 RUN chmod +x /entrypoint.sh && \
   chmod +x /generate_db_schema_documentation.py && \
-  pip3 install -r --no-cache-dir requirements.txt && \
+  pip3 install --no-cache-dir -r requirements.txt && \
   npm install
 
 ENTRYPOINT ["/entrypoint.sh"]
