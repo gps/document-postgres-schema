@@ -1,4 +1,5 @@
 {
+  "name": "Generate DBSchema Documentation",
   "devDependencies": {
     "prettier": "2.5.1"
   }
