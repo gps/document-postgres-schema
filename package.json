@@ -1,5 +1,5 @@
 {
-  "name": "generate-db-schema-documentation",
+  "name": "document-postgres-schema",
   "devDependencies": {
     "prettier": "2.5.1"
   }
